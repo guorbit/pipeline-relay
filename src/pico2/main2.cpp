@@ -4,7 +4,7 @@
 
 #define SLAVE_ADDR 8
 
-UART Serial2(8, 9, NC, NC);
+UART Serial2(0, 1, NC, NC);
 
 int toJetsonBuf;
 
@@ -68,7 +68,7 @@ void i2cRequestHandler()
         ;
     
     String payload = readUart();
-    
+    // String payload = "it";
 
     Serial.print("Relaying data to OBC: ");
     Serial.println(payload);
@@ -90,12 +90,16 @@ void setup()
     Serial.print(".");
     Wire.onRequest(i2cRequestHandler);
     Serial2.begin(115200);
+    pinMode(LED_BUILTIN, OUTPUT);
     Serial.println("\tDONE");
 }
 
 void loop()
 {
     // put your main code here, to run repeatedly:
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(10);
+    digitalWrite(LED_BUILTIN, LOW);
     delay(10);
 }
 
