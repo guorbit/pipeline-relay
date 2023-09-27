@@ -10,8 +10,6 @@ int toJetsonBuf;
 
 void sendUart(int state)
 {
-    
-    
     char payload[2];
     payload[0] = state;
     payload[1] = '#';
@@ -81,8 +79,8 @@ void setup()
     // put your setup code here, to run once:
     Serial.begin(9600);
 
-    while (!Serial)
-        ; // wait for serial
+    /* while (!Serial)
+        ; // wait for serial */
     Serial.print("Initializing IO Relay.");
     Wire.begin(SLAVE_ADDR);
     Serial.print(".");
@@ -102,15 +100,3 @@ void loop()
     digitalWrite(LED_BUILTIN, LOW);
     delay(10);
 }
-
-// void setup()
-// {
-
-//     Serial.begin(9600);
-//     while (!Serial)
-
-//     Serial.print("Initializing IO relay...\t");
-
-//     Serial2.begin(115200);
-//     Serial.println("DONE");
-// }
